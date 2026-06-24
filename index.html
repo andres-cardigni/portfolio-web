@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrés Cardigni — Lead Product & UX/UI Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=recoleta@300,400&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+
+    /* ── Tokens ── */
+    :root {
+      --bg:           #F8F7F4;
+      --bg-card:      #FFFFFF;
+      --text:         #1A1A18;
+      --text-mid:     #5F5E5A;
+      --text-soft:    #888780;
+      --accent:       #FF6200;
+      --accent-light: #FFF0E6;
+      --border:       rgba(26,26,24,0.10);
+      --border-mid:   rgba(26,26,24,0.18);
+      --pad-x:        clamp(1.5rem, 5vw, 4rem);
+      --max-w:        1100px;
+      --section-py:   6rem;
+    }
+
+    /* ── Base ── */
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: var(--pad-x);
+      padding-right: var(--pad-x);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════
+       NAV
+    ══════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 64px;
+      background: rgba(248,247,244,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      letter-spacing: 0.01em;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 100px;
+      padding: 0.45rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .lang-switch a {
+      color: var(--text-soft);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .lang-switch a:hover { color: var(--text); }
+
+    .lang-switch a.lang-active {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .lang-switch-divider {
+      color: var(--border-mid);
+      user-select: none;
+    }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      padding-top: 64px;
+      padding-bottom: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .hero-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 0.5px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-h1 {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: clamp(2.5rem, 6.8vw, 6.2rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      animation: fadeUp 0.7s ease 0.35s both;
+    }
+
+    .hero-description {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+      max-width: 42ch;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.875rem;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      border-radius: 100px;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.875rem;
+      background: transparent;
+      color: var(--text-mid);
+      border: 0.5px solid var(--border-mid);
+      border-radius: 100px;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* ══════════════════════════════
+       SECTION HEADERS
+    ══════════════════════════════ */
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+    }
+
+    .section-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 2.8rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.15;
+    }
+
+    hr.section-divider {
+      border: none;
+      border-top: 0.5px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    /* ══════════════════════════════
+       PROJECTS
+    ══════════════════════════════ */
+    #projects {
+      padding: var(--section-py) 0;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .project-card {
+      background: var(--bg);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      transition: background 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      min-height: 280px;
+    }
+
+    .project-card:hover { background: var(--bg-card); }
+
+    .project-card.featured {
+      grid-column: span 2;
+      flex-direction: row;
+      align-items: flex-start;
+      min-height: 240px;
+    }
+
+    .project-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    .project-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .project-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .project-card-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      flex-shrink: 0;
+      min-width: 220px;
+    }
+
+    .project-result {
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      max-width: 26ch;
+    }
+
+    .project-arrow {
+      font-size: 1.25rem;
+      color: var(--text-soft);
+      transition: transform 0.2s, color 0.2s;
+      line-height: 1;
+      align-self: flex-end;
+    }
+
+    .project-card:hover .project-arrow {
+      transform: translate(3px, -3px);
+      color: var(--accent);
+    }
+
+    .project-card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .project-image-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-top: auto;
+    }
+
+    .project-image-placeholder span {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      opacity: 0.6;
+    }
+
+    .project-card.featured .project-image-placeholder {
+      aspect-ratio: 16 / 7;
+    }
+
+    /* ══════════════════════════════
+       EXPERIENCE
+    ══════════════════════════════ */
+    #experience {
+      padding: var(--section-py) 0;
+    }
+
+    .experience-intro {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      max-width: 52ch;
+      margin-bottom: 3rem;
+    }
+
+    .experience-list {}
+
+    .experience-row {
+      display: grid;
+      grid-template-columns: 160px 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 1.75rem 0;
+      border-top: 0.5px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      background: var(--bg);
+      margin: 0 -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .experience-row:hover { background: var(--bg-card); }
+    .experience-row:last-child { border-bottom: 0.5px solid var(--border); }
+
+    .exp-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 100%;
+    }
+
+    .exp-arrow {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      transition: transform 0.2s, color 0.2s;
+      line-height: 1;
+    }
+
+    .experience-row:hover .exp-arrow {
+      transform: translate(3px, -3px);
+      color: var(--accent);
+    }
+
+    .exp-period {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--accent);
+      padding-top: 0.15rem;
+    }
+
+    .exp-content {}
+
+    .exp-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-company {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 0.6rem;
+    }
+
+    .exp-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      max-width: 52ch;
+    }
+
+    .exp-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      border: 0.5px solid var(--border);
+      border-radius: 100px;
+      padding: 0.25rem 0.6rem;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════
+       ABOUT
+    ══════════════════════════════ */
+    #about {
+      padding: var(--section-py) 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-prose p {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-prose p:last-child { margin-bottom: 0; }
+
+    .about-stats {}
+
+    .stat-item {
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .stat-item:first-child {
+      padding-top: 0;
+    }
+
+    .stat-number {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 2.5rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    /* ══════════════════════════════
+       CONTACT
+    ══════════════════════════════ */
+    #contact {
+      padding: var(--section-py) 0;
+      padding-bottom: 6rem;
+    }
+
+    .contact-inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .contact-heading {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .contact-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1.5rem;
+    }
+
+    .contact-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      color: var(--text-soft);
+      max-width: 32ch;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    .contact-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .contact-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-links a:hover { color: var(--text); }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .footer-note {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .hero-ctas { flex-wrap: wrap; }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card.featured {
+        grid-column: span 1;
+        flex-direction: column;
+      }
+
+      .project-card-right {
+        min-width: unset;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .experience-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        margin: 0 -1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .exp-meta { flex-direction: row; align-items: center; justify-content: space-between; }
+      .exp-tag { justify-self: start; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .contact-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-right {
+        align-items: flex-start;
+      }
+
+      .contact-subtitle { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════ NAV ═══════════════════ -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Andrés Cardigni</a>
+      <ul class="nav-links">
+        <li><a href="#projects">Work</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="thinking.html">Thinking</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:1.25rem;">
+        <div class="lang-switch">
+          <a href="index.html" class="lang-active">EN</a>
+          <span class="lang-switch-divider">/</span>
+          <a href="index-es.html">ES</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-label">Lead Product &amp; UX/UI Designer</div>
+        <h1 class="hero-h1">I close the gap between<br><span style="white-space:nowrap"><em>design</em> and engineering.</span></h1>
+        <div class="hero-bottom">
+          <p class="hero-description">5 years leading product and UX/UI in fintech — with a background in industrial and graphic design that shapes how I think about every system I build.</p>
+          <div class="hero-ctas">
+            <a href="#projects" class="btn-primary">View case studies</a>
+            <a href="Andres-Cardigni-CV-ENG.pdf" class="btn-secondary" download>Download CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROJECTS ═══════════════════ -->
+  <section id="projects">
+    <div class="container">
+      <hr class="section-divider">
+      <div class="section-header">
+        <span class="section-label">Selected work</span>
+        <h2 class="section-title">Case Studies</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Featured: GOAT -->
+        <a class="project-card featured" data-project="goat" role="button" tabindex="0">
+          <div class="project-card-content">
+            <span class="project-tag">Product · UX/UI · Integrations · Design System</span>
+            <h3 class="project-title">GOAT — Leading Product Expansion in a Fintech Ecosystem</h3>
+            <p class="project-desc">Shifted from UX/UI execution to product ownership — defining which services to build, coordinating integrations with external providers, and leading four designers across the full Rebit ecosystem.</p>
+            <div class="project-image-placeholder"><span>Image coming soon</span></div>
+          </div>
+          <div class="project-card-right">
+            <div class="project-result">
+              Platform grew from 10 to 20 B2B clients. Monthly processing volume reached over 1.5B ARS. Prisma activated for payments and collections.
+            </div>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <!-- Rebit -->
+        <a class="project-card" data-project="rebit" role="button" tabindex="0">
+          <div class="project-card-content">
+            <span class="project-tag">UX/UI · Branding · Design System · Product</span>
+            <h3 class="project-title">Rebit — Rebuilding a Fintech from the Ground Up</h3>
+            <p class="project-desc">Led the full rebuild of a fintech product — new name, new brand, new design system. Moved the team from zero documentation to pixel-perfect handoff with development.</p>
+            <div class="project-image-placeholder"><img src="images/Rebit.png" alt="Rebit" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <!-- Rebit Comercios -->
+        <a class="project-card" data-project="rebit-comercios" role="button" tabindex="0">
+          <div class="project-card-content">
+            <span class="project-tag">Product · UX/UI · Flows · B2B</span>
+            <h3 class="project-title">Rebit Comercios — Designing the Revenue Engine of a Fintech</h3>
+            <p class="project-desc">Designed end-to-end from zero — flows, wireframes, high-fidelity handoff. Worked directly with B2B clients to adapt the product to how their businesses actually operate.</p>
+            <div class="project-image-placeholder"><img src="images/Rebit Comercios.png" alt="Rebit Comercios" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <!-- Corporación Cápsula -->
+        <a class="project-card" data-project="capsula" role="button" tabindex="0" style="grid-column: span 2;">
+          <div class="project-card-content">
+            <span class="project-tag">Brand · UX/UI · Industrial Design · Product Strategy</span>
+            <h3 class="project-title">Corporación Cápsula — Designing a Tech-Financial Holding from Scratch</h3>
+            <p class="project-desc">Led a team of three designers across brand, web, pitch decks, and physical hardware redesign — building the full identity of a holding under investor pressure and tight deadlines. This is where industrial design and digital work converged for the first time.</p>
+            <div class="project-image-placeholder"><img src="https://img.youtube.com/vi/rn3oahV9KE4/maxresdefault.jpg" alt="Corporación Cápsula" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+          </div>
+          <div class="project-card-footer">
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
+  <section id="experience">
+    <div class="container">
+      <hr class="section-divider">
+      <div class="section-header">
+        <span class="section-label">Background</span>
+        <h2 class="section-title">Experience</h2>
+      </div>
+
+      <p class="experience-intro">My career didn't follow a straight line — each discipline overlapped and fed the next. Industrial design taught me process and constraints. Graphic design taught me systems and identity. UX/UI gave me the digital language. Product brought it all together.</p>
+
+      <div class="experience-list">
+
+        <a href="experience.html#goat" class="experience-row">
+          <span class="exp-period">Mar 2023 — Present</span>
+          <div class="exp-content">
+            <div class="exp-title">Lead Product &amp; UX/UI Designer</div>
+            <div class="exp-company">GOAT</div>
+            <p class="exp-desc">Shifted from UX/UI execution to product ownership. Defined services with the CEO, led provider integrations, coordinated design and development across the full Rebit ecosystem.</p>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-tag">Fintech · PSP</span>
+            <span class="exp-arrow">↗</span>
+          </div>
+        </a>
+
+        <a href="experience.html#rebit" class="experience-row">
+          <span class="exp-period">Jan 2022 — Feb 2023</span>
+          <div class="exp-content">
+            <div class="exp-title">UX/UI Lead</div>
+            <div class="exp-company">Rebit</div>
+            <p class="exp-desc">Rebuilt the product from the ground up. New name, new brand, new design system. Moved the team from zero documentation to pixel-perfect handoff with development.</p>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-tag">Fintech · Digital Wallet</span>
+            <span class="exp-arrow">↗</span>
+          </div>
+        </a>
+
+        <a href="experience.html#capsula" class="experience-row">
+          <span class="exp-period">Feb 2021 — Dec 2022</span>
+          <div class="exp-content">
+            <div class="exp-title">Lead Designer</div>
+            <div class="exp-company">Corporación Cápsula</div>
+            <p class="exp-desc">Led a team of three designers across brand, web, pitch decks and physical product design. Built the full identity of a tech-financial holding under investor pressure and tight deadlines.</p>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-tag">Tech-Financial Holding</span>
+            <span class="exp-arrow">↗</span>
+          </div>
+        </a>
+
+        <a href="experience.html#graphic" class="experience-row">
+          <span class="exp-period">Jan 2019 — Dec 2021</span>
+          <div class="exp-content">
+            <div class="exp-title">Graphic Designer</div>
+            <div class="exp-company">Freelance</div>
+            <p class="exp-desc">Started doing brand identity work for external clients. As I moved into product roles, this evolved into directing the visual identity of the products I was leading.</p>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-tag">Branding · Visual Systems</span>
+            <span class="exp-arrow">↗</span>
+          </div>
+        </a>
+
+        <a href="experience.html#industrial" class="experience-row">
+          <span class="exp-period">Sep 2015 — Jan 2020</span>
+          <div class="exp-content">
+            <div class="exp-title">Industrial Designer</div>
+            <div class="exp-company">Freelance</div>
+            <p class="exp-desc">Furniture, plastic parts and commercial spaces. Client management, supplier negotiation, tight production deadlines. This is where I learned that design without constraints isn't design.</p>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-tag">Product Development</span>
+            <span class="exp-arrow">↗</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section id="about">
+    <div class="container">
+      <hr class="section-divider">
+      <div class="section-header">
+        <span class="section-label">Background</span>
+        <h2 class="section-title">About</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-prose">
+          <p>I didn't start in digital. My first years were in industrial and graphic design — physical products, manufacturing constraints, client deadlines, real production. That background gave me something most UX/UI designers don't have: I know how things get made, and I know how to talk to the people who make them.</p>
+          <p>That foundation transferred directly into how I work in product. I understand constraints before I design around them. I can read a technical requirement from a provider, translate it into a flow, and hand it off to development without losing anything in between.</p>
+          <p>For the last 5 years I've been leading UX/UI and product design in fintech — building design systems, owning integrations with external providers, and shipping with dev teams. I stay close to production because that's where the real decisions happen.</p>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Years across industrial, graphic and digital design</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Years leading product and UX/UI in fintech</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1.5B</div>
+            <div class="stat-label">ARS monthly processing volume at GOAT</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Designers led across the Rebit ecosystem</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <hr class="section-divider">
+
+      <div class="contact-inner">
+        <h2 class="contact-heading">Let's <em>talk.</em></h2>
+        <div class="contact-right">
+          <p class="contact-subtitle">Open to new opportunities, collaborations, and conversations about product and design.</p>
+          <div class="contact-links">
+            <a href="mailto:andres.cardigni@gmail.com">andres.cardigni@gmail.com</a>
+            <a href="https://www.linkedin.com/in/andrés-cardigni" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROJECT MODAL ═══════════════════ -->
+  <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-container">
+      <div class="modal-body">
+
+        <!-- Left: carousel -->
+        <div class="modal-carousel">
+          <div class="carousel-track-wrap">
+            <div class="carousel-track" id="carousel-track"></div>
+            <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Previous">←</button>
+            <button class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Next">→</button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+          </div>
+          <p class="carousel-caption" id="carousel-caption"></p>
+        </div>
+
+        <!-- Right: info -->
+        <div class="modal-info">
+          <h2 class="modal-title" id="modal-title"></h2>
+          <p class="modal-summary" id="modal-summary"></p>
+          <ul class="modal-decisions" id="modal-decisions"></ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">Andrés Cardigni</span>
+        <span class="footer-note">Lead Product &amp; UX/UI Designer · 2026</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <style>
+    /* ── Modal overlay ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-overlay.is-open .modal-container {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* ── Modal container ── */
+    .modal-container {
+      background: #FFFFFF;
+      border-radius: 0;
+      padding: 32px;
+      max-width: 960px;
+      width: 100%;
+      overflow: visible;
+      position: relative;
+      transform: scale(0.96);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    /* ── Two-column body ── */
+    .modal-body {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      gap: 32px;
+      align-items: start;
+    }
+    .modal-info {
+      padding-right: 32px;
+      padding-top: 12px;
+    }
+
+    /* ── Left: carousel ── */
+    .modal-carousel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .carousel-track-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      height: 448px;
+    }
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.35s ease;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: var(--border);
+    }
+
+    /* Caption below image */
+    .carousel-caption {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-soft);
+      margin-top: 0.5rem;
+    }
+    .carousel-caption a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Arrows inside image */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: color 0.15s;
+      z-index: 2;
+      line-height: 1;
+    }
+    .carousel-arrow:hover { color: #fff; }
+    .carousel-arrow:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+    .carousel-arrow-prev { left: 0.5rem; }
+    .carousel-arrow-next { right: 0.5rem; }
+
+    /* Dots inside image */
+    .carousel-dots {
+      position: absolute;
+      bottom: 0.625rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.35rem;
+      z-index: 2;
+    }
+    .carousel-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+      padding: 0;
+    }
+    .carousel-dot.active {
+      background: #fff;
+      transform: scale(1.35);
+    }
+
+    /* ── Right: info ── */
+    .modal-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .modal-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .modal-summary {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-mid);
+    }
+    .modal-decisions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.25rem;
+      padding: 0;
+    }
+    .modal-decisions li {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-mid);
+      list-style: disc;
+      margin-left: 1.2rem;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .modal-container { padding: 1.25rem; }
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Card cursor ── */
+    .project-card[data-project] { cursor: pointer; }
+  </style>
+
+  <script>
+    const PROJECTS = {
+      goat: {
+        title: 'GOAT — Leading Product Expansion in a Fintech Ecosystem',
+        summary: 'A Payment Service Provider built to power an entire fintech ecosystem. GOAT\'s core function was enabling integrations with external financial providers — Prisma for card payments and collections, TAPI for utility payments and recharges, RedLink for interbank transfers — connecting them into a single coherent product under one brand umbrella.',
+        decisions: [
+          'Built a brand from zero designed as an umbrella — structured to support multiple products underneath, starting with Rebit as the first node.',
+          'The work here was product, not UI — integrating external providers (Prisma, TAPI, RedLink) to expand what the ecosystem could offer without rebuilding the core.',
+          'Every integration was designed as a flow first, handed off with full documentation — development never had to interpret, only implement.',
+        ],
+        slides: [
+          { src: 'images/goat-01.png', caption: 'Dashboard overview — designed to give B2B clients a single control panel for all financial operations.' },
+          { src: 'images/goat-02.png', caption: 'Provider integration flow — mapping the handoff points between internal design and external API dependencies.' },
+          { src: 'images/goat-03.png', caption: 'Design system tokens — establishing the shared language between four designers working in parallel.' },
+        ]
+      },
+      rebit: {
+        title: 'Rebit — Rebuilding a Fintech from the Ground Up',
+        summary: 'A fintech wallet focused on fiat and crypto transactions for the Argentine market. Built around simplicity and access — designed to reduce friction for users approaching Bitcoin for the first time, while supporting full P2P transfers, CVU management, and crypto operations in a single interface.',
+        decisions: [
+          'Designed for both fiat and crypto transactions — a clean, functional wallet built around simplicity rather than feature overload.',
+          'Features were designed ahead of competitors — not the first to market, but consistently ahead in the design pipeline, with flows ready before the industry caught up.',
+          'Focus on democratizing Bitcoin access in Argentina, with an interface built to reduce friction for users who had never used crypto before.',
+        ],
+        slides: [
+          { src: 'images/Rebit.png', caption: 'Brand reveal — the rename from Brik Federation to Rebit, with a new visual identity built from scratch.' },
+          { src: 'images/Rebit02.png', caption: 'Design system — component library and token structure that enabled consistent, scalable handoffs.' },
+          { src: 'images/rebit-03.png', caption: 'Onboarding flow — one of the first flows fully documented for development, establishing the new standard.' },
+        ]
+      },
+      'rebit-comercios': {
+        title: 'Rebit Comercios — Designing the Revenue Engine of a Fintech',
+        summary: 'A merchant payment platform — a direct alternative to MercadoPago with lower commissions and a closer fit to how small businesses actually operate. Supports QR and card collections, multi-role access (owners, managers, cashiers with different permission levels), multiple CBUs under one account, and internal transfers between branches.',
+        decisions: [
+          'A direct alternative to MercadoPago — lower commissions, but the real differentiator was adaptation: we worked closely with each client to fit the product to their operation, not the other way around.',
+          'Designed a multi-role access system: account owners can add collaborators (managers, cashiers) with custom permission levels — a feature built around how small businesses actually operate.',
+          'Multiple CBUs under a single account allow businesses to separate branches, transact between them internally, and keep a personal account alongside — all within one ecosystem.',
+        ],
+        slides: [
+          { src: 'images/Rebit Comercios.png', caption: 'Merchant dashboard — designed for low-tech users operating physical stores with limited time.' },
+          { src: 'images/rebit-comercios-02.png', caption: 'QR generation flow — simplified to three steps to reduce friction at the point of sale.' },
+          { src: 'images/rebit-comercios-03.png', caption: 'Transaction history — giving merchants visibility into daily revenue without financial complexity.' },
+        ]
+      },
+      capsula: {
+        title: 'Corporación Cápsula — Designing a Tech-Financial Holding from Scratch',
+        summary: 'A vertically integrated holding built around a single thesis: generate renewable energy, mine Bitcoin with it, and use that Bitcoin as the backbone of a financial platform. Reached MVP stage with active solar panels and mining nodes in a Buenos Aires free trade zone, with land already allocated by the San Juan government for expansion.',
+        decisions: [
+          'The most ambitious project: a vertically integrated model connecting renewable energy, Bitcoin mining, and a financial platform — designed as a full system, not just an interface.',
+          'Reached MVP stage with active solar panels and mining nodes in a Buenos Aires free trade zone, with hectares already allocated by the San Juan government for expansion.',
+          'Full design scope delivered: brand identity, web, pitch decks, event presence, and physical hardware redesign — from visual system to manufacturing specs.',
+        ],
+        slides: [
+          { src: 'https://img.youtube.com/vi/rn3oahV9KE4/maxresdefault.jpg', caption: 'Virtuality San Juan 2022 — product video presented at the company\'s public debut. Watch on YouTube ↗', link: 'https://www.youtube.com/watch?v=rn3oahV9KE4' },
+          { src: 'images/capsula-02.png', caption: 'Brand identity — logotype, color system, and typographic language built under tight deadlines.' },
+          { src: 'images/capsula-03.png', caption: 'Hardware redesign — industrial design direction for the physical payment terminal.' },
+        ]
+      }
+    };
+
+    (function () {
+      const overlay  = document.getElementById('project-modal');
+      const track    = document.getElementById('carousel-track');
+      const dotsWrap = document.getElementById('carousel-dots');
+      const prevBtn  = document.getElementById('carousel-prev');
+      const nextBtn  = document.getElementById('carousel-next');
+
+      let current = 0;
+      let slides  = [];
+
+      function openModal(projectKey) {
+        const data = PROJECTS[projectKey];
+        if (!data) return;
+
+        document.getElementById('modal-title').textContent   = data.title;
+        document.getElementById('modal-summary').textContent = data.summary;
+
+        const decList = document.getElementById('modal-decisions');
+        decList.innerHTML = '';
+        (data.decisions || []).forEach(text => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          decList.appendChild(li);
+        });
+
+        slides = data.slides;
+        current = 0;
+        buildCarousel();
+
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      function buildCarousel() {
+        track.innerHTML = '';
+        dotsWrap.innerHTML = '';
+
+        slides.forEach((slide, i) => {
+          const el = document.createElement('div');
+          el.className = 'carousel-slide';
+
+          const img = document.createElement('img');
+          img.src = slide.src;
+          img.alt = slide.caption || '';
+
+          if (slide.link) {
+            const a = document.createElement('a');
+            a.href = slide.link;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.appendChild(img);
+            el.appendChild(a);
+          } else {
+            el.appendChild(img);
+          }
+
+
+          track.appendChild(el);
+
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+          dot.addEventListener('click', () => goTo(i));
+          dotsWrap.appendChild(dot);
+        });
+
+        updateCarousel();
+      }
+
+      function goTo(index) {
+        current = Math.max(0, Math.min(index, slides.length - 1));
+        updateCarousel();
+      }
+
+      function updateCarousel() {
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === current);
+        });
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === slides.length - 1;
+
+        const capEl = document.getElementById('carousel-caption');
+        const slide = slides[current];
+        capEl.innerHTML = '';
+        if (slide.caption) {
+          if (slide.link) {
+            const a = document.createElement('a');
+            a.href = slide.link;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.textContent = slide.caption;
+            capEl.appendChild(a);
+          } else {
+            capEl.textContent = slide.caption;
+          }
+        }
+      }
+
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); goTo(current - 1); });
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); goTo(current + 1); });
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape')      closeModal();
+        if (e.key === 'ArrowLeft')   goTo(current - 1);
+        if (e.key === 'ArrowRight')  goTo(current + 1);
+      });
+
+      document.querySelectorAll('.project-card[data-project]').forEach(card => {
+        card.addEventListener('click', () => openModal(card.dataset.project));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(card.dataset.project);
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

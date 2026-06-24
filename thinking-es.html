@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pensamiento — Andrés Cardigni</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=recoleta@300,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+
+    :root {
+      --bg:           #F8F7F4;
+      --bg-card:      #FFFFFF;
+      --text:         #1A1A18;
+      --text-mid:     #5F5E5A;
+      --text-soft:    #888780;
+      --accent:       #FF6200;
+      --accent-light: #FFF0E6;
+      --border:       rgba(26,26,24,0.10);
+      --border-mid:   rgba(26,26,24,0.18);
+      --pad-x:        clamp(1.5rem, 5vw, 4rem);
+      --max-w:        1100px;
+      --section-py:   6rem;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: var(--pad-x);
+      padding-right: var(--pad-x);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
+      background: rgba(248,247,244,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      letter-spacing: 0.01em;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 100px;
+      padding: 0.45rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--text); color: var(--bg); }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .lang-switch a {
+      color: var(--text-soft);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .lang-switch a:hover { color: var(--text); }
+    .lang-switch a.lang-active { color: var(--text); font-weight: 500; }
+    .lang-switch-divider { color: var(--border-mid); user-select: none; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding-top: calc(64px + 5rem);
+      padding-bottom: 4rem;
+    }
+
+    .page-header-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .page-header-label::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 0.5px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .page-header-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 2.8rem;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .page-header-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      max-width: 48ch;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    /* ── POST CARDS ── */
+    .posts-list { padding-bottom: var(--section-py); }
+
+    .post-card {
+      display: block;
+      border-top: 0.5px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      background: var(--bg);
+      margin: 0 calc(-1 * var(--pad-x));
+      padding: 2.75rem var(--pad-x);
+      transition: background 0.2s;
+    }
+
+    .post-card:last-child { border-bottom: 0.5px solid var(--border); }
+    .post-card:hover { background: var(--bg-card); }
+
+    .post-card-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .post-card-body { display: flex; flex-direction: column; gap: 1rem; }
+
+    .post-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+    }
+
+    .post-card-meta::before {
+      content: '';
+      display: block;
+      width: 1.5rem;
+      height: 0.5px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .post-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .post-excerpt {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.9375rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      font-style: italic;
+      max-width: 64ch;
+    }
+
+    .post-read {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .post-arrow {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      transition: transform 0.2s, color 0.2s;
+      line-height: 1;
+      align-self: center;
+      flex-shrink: 0;
+    }
+
+    .post-card:hover .post-arrow {
+      transform: translate(3px, -3px);
+      color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top: 0.5px solid var(--border); padding: 2rem 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+
+    .footer-name {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .footer-note {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .post-card-inner { grid-template-columns: 1fr; }
+      .post-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index-es.html" class="nav-logo">Andrés Cardigni</a>
+      <ul class="nav-links">
+        <li><a href="index-es.html#projects">Proyectos</a></li>
+        <li><a href="experience-es.html">Experiencia</a></li>
+        <li><a href="thinking-es.html" class="active">Pensamiento</a></li>
+        <li><a href="index-es.html#about">Sobre mí</a></li>
+        <li><a href="index-es.html#contact">Contacto</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:1.25rem;">
+        <div class="lang-switch">
+          <a href="thinking.html">EN</a>
+          <span class="lang-switch-divider">/</span>
+          <a href="thinking-es.html" class="lang-active">ES</a>
+        </div>
+        <a href="mailto:andres.cardigni@gmail.com" class="nav-cta">Escribime</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header-label">Ideas y reflexión</div>
+      <h1 class="page-header-title">Pensamiento</h1>
+      <p class="page-header-desc">Ideas sobre diseño, proceso y el espacio entre la intención y la ejecución.</p>
+    </div>
+  </header>
+
+  <!-- POST CARDS -->
+  <main>
+    <div class="posts-list">
+
+      <a href="thinking-reinforcing-narratives-es.html" class="post-card">
+        <div class="post-card-inner">
+          <div class="post-card-body">
+            <span class="post-card-meta">Diseño y Práctica</span>
+            <h2 class="post-title">La Dependencia de las Narrativas de Refuerzo en el Diseño y las Artes</h2>
+            <p class="post-excerpt">Cuando el diseño necesita demasiada explicación, quizás sea momento de preguntarse si realmente está comunicando, o si simplemente estamos decorando el silencio.</p>
+            <span class="post-read">Leer →</span>
+          </div>
+          <span class="post-arrow">↗</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">Andrés Cardigni</span>
+        <span class="footer-note">Lead Product &amp; UX/UI Designer · 2025</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

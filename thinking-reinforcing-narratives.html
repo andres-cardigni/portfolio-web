@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Dependence on Reinforcing Narratives — Andrés Cardigni</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=recoleta@300,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+
+    :root {
+      --bg:           #F8F7F4;
+      --bg-card:      #FFFFFF;
+      --text:         #1A1A18;
+      --text-mid:     #5F5E5A;
+      --text-soft:    #888780;
+      --accent:       #FF6200;
+      --accent-light: #FFF0E6;
+      --border:       rgba(26,26,24,0.10);
+      --border-mid:   rgba(26,26,24,0.18);
+      --pad-x:        clamp(1.5rem, 5vw, 4rem);
+      --max-w:        1100px;
+      --section-py:   6rem;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: var(--pad-x);
+      padding-right: var(--pad-x);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
+      background: rgba(248,247,244,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      letter-spacing: 0.01em;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 100px;
+      padding: 0.45rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--text); color: var(--bg); }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .lang-switch a {
+      color: var(--text-soft);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .lang-switch a:hover { color: var(--text); }
+    .lang-switch a.lang-active { color: var(--text); font-weight: 500; }
+    .lang-switch-divider { color: var(--border-mid); user-select: none; }
+
+    /* ── ARTICLE HEADER ── */
+    .article-header {
+      padding-top: calc(64px + 5rem);
+      padding-bottom: 4rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s;
+      animation: fadeUp 0.5s ease 0.05s both;
+    }
+
+    .back-link:hover { color: var(--text); }
+
+    .back-link::before {
+      content: '←';
+      font-size: 0.9rem;
+    }
+
+    .article-category {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .article-category::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 0.5px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .article-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 2.8rem;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+      max-width: 20ch;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .article-excerpt {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      font-style: italic;
+      max-width: 56ch;
+      border-left: 2px solid var(--border-mid);
+      padding-left: 1.25rem;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-body {
+      padding: 4rem 0 var(--section-py);
+    }
+
+    .article-content {
+      max-width: 68ch;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .article-paragraph {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.9375rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top: 0.5px solid var(--border); padding: 2rem 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+
+    .footer-name {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .footer-note {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .article-title { font-size: 2rem; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Andrés Cardigni</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Work</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="thinking.html" class="active">Thinking</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:1.25rem;">
+        <div class="lang-switch">
+          <a href="thinking-reinforcing-narratives.html" class="lang-active">EN</a>
+          <span class="lang-switch-divider">/</span>
+          <a href="thinking-reinforcing-narratives-es.html">ES</a>
+        </div>
+        <a href="mailto:andres.cardigni@gmail.com" class="nav-cta">Get in touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="container">
+      <a href="thinking.html" class="back-link">Thinking</a>
+      <div class="article-category">Design &amp; Practice</div>
+      <h1 class="article-title">The Dependence on Reinforcing Narratives in Design and the Arts</h1>
+      <p class="article-excerpt">When design needs too much explanation, it may be time to ask whether it's truly communicating — or whether we're simply decorating the silence.</p>
+    </div>
+  </header>
+
+  <!-- ARTICLE BODY -->
+  <main class="article-body">
+    <div class="container">
+      <div class="article-content">
+
+        <p class="article-paragraph">In design and in complex artistic works, effective communication does not reside solely in the finished piece (the artifact itself). It is often complemented by — or even dependent on — a Reinforcing Narrative (discourse, justification, storytelling, or external context) for the intended message to be fully perceived and accepted by the audience. This dependence is inversely proportional to the clarity of the piece's communicative objective.</p>
+
+        <p class="article-paragraph">We live in a world where everything needs to be explained. And design — born as a direct language between intention and perception — is not exempt from this tendency to justify everything.</p>
+
+        <p class="article-paragraph">Sometimes, behind a graphic piece, an object, or even a visual identity, there is a discourse so elaborate that one wonders whether the piece truly communicates on its own or whether it depends on that narrative to make sense. I'm not interested in approaching this from criticism, but from observation.</p>
+
+        <p class="article-paragraph">Recently, while watching an interview with Daron Malakian (guitarist and songwriter of System of a Down) about the video for "Aerials", I found a very clear example of how a work can expand through a later-added narrative. The video itself shows a child with alien-like features in an environment full of symbolism: lights, cameras, a circus, television, and the contrast between spectacle and emptiness. Without any explanation, it conveys a sense of strangeness and isolation from the world around him.</p>
+
+        <p class="article-paragraph">What I found interesting was learning, through the interview, that Daron had originally imagined the character as a disabled child — someone also alienated from everyday life. That explanation doesn't change the meaning of the video, but it enriched my reading of it. It allowed me to emotionally connect with the original idea while still leaving room for some degree of interpretation.</p>
+
+        <p class="article-paragraph">In art, this Reinforcing Narrative enriches the work: it doesn't fix a communicative gap, but opens new layers of meaning.</p>
+
+        <p class="article-paragraph">In design, however, this same operation does not always work in its favor. When a designer needs to explain too much of what they intended to say, the discourse stops being a complement and becomes a crutch.</p>
+
+        <p class="article-paragraph">Sometimes these narratives appear because resources were limited, or because the execution didn't fully achieve the original intention. In those cases, the storytelling tries to compensate for what the piece itself fails to communicate. And it's not always negative: it can be a way to make the process visible, to share the reasoning behind a decision. But if that justification becomes indispensable for understanding the piece, then the design has lost autonomy.</p>
+
+        <p class="article-paragraph">That's why I believe the key lies in balance. Art can afford to be ambiguous, poetic, or metaphorical, because its value also resides in interpretation. Design, on the other hand, should aspire to clarity — without giving up that extra twist that elevates it from the merely functional to the meaningful. A justification can add value, as long as it's not the only thing holding the message together.</p>
+
+        <p class="article-paragraph">Perhaps that's where the real difference lies: in art, the narrative expands the work; in design, the narrative explains the work. And when design requires too much explanation, it may be time to ask whether it's truly communicating — or whether we're simply decorating the silence.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">Andrés Cardigni</span>
+        <span class="footer-note">Lead Product &amp; UX/UI Designer · 2025</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

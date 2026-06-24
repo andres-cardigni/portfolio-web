@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience — Andrés Cardigni</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=recoleta@300,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+
+    :root {
+      --bg:           #F8F7F4;
+      --bg-card:      #FFFFFF;
+      --text:         #1A1A18;
+      --text-mid:     #5F5E5A;
+      --text-soft:    #888780;
+      --accent:       #FF6200;
+      --accent-light: #FFF0E6;
+      --border:       rgba(26,26,24,0.10);
+      --border-mid:   rgba(26,26,24,0.18);
+      --pad-x:        clamp(1.5rem, 5vw, 4rem);
+      --max-w:        1100px;
+      --section-py:   6rem;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: var(--pad-x);
+      padding-right: var(--pad-x);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
+      background: rgba(248,247,244,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      letter-spacing: 0.01em;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 100px;
+      padding: 0.45rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--text); color: var(--bg); }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .lang-switch a {
+      color: var(--text-soft);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .lang-switch a:hover { color: var(--text); }
+
+    .lang-switch a.lang-active {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .lang-switch-divider {
+      color: var(--border-mid);
+      user-select: none;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding-top: calc(64px + 5rem);
+      padding-bottom: 4rem;
+    }
+
+    .page-header-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-soft);
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .page-header-label::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 0.5px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .page-header-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 2.8rem;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--text);
+      max-width: 18ch;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .page-header-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      max-width: 52ch;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    /* ── ROLES LIST ── */
+    .roles-list {
+      padding-bottom: var(--section-py);
+    }
+
+    .role-block[id] {
+      scroll-margin-top: 88px;
+    }
+
+    /* ── ROLE BLOCK ── */
+    .role-block {
+      display: grid;
+      /* Left: content | Right: orange border line */
+      grid-template-columns: 1fr 3px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .role-block:last-child {
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    /* Orange vertical line on the right */
+    .role-accent-line {
+      background: var(--accent);
+      margin: 3rem 0;
+      border-radius: 2px;
+    }
+
+    /* ── ROLE CONTENT ── */
+    .role-content {
+      padding: 3rem 3rem 3rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Title row: title left, period right */
+    .role-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .role-title-group {}
+
+    .role-title {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .role-company {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-top: 0.15rem;
+    }
+
+    .role-period {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Summary */
+    .role-summary {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 80%;
+    }
+
+    /* Section (responsibilities / projects) */
+    .role-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 80%;
+    }
+
+    .role-section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+
+    /* Bullet list */
+    .role-bullet-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .role-bullet-list li {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .role-bullet-list li::before {
+      content: '·';
+      color: var(--accent);
+      font-size: 1.2rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.5;
+    }
+
+    .role-bullet-list li strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Result */
+    .role-result {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--accent-light);
+      border-left: 2px solid var(--accent);
+      margin-top: 0.5rem;
+      max-width: 80%;
+    }
+
+    .role-result-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .role-result-text {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-family: 'Recoleta', serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .footer-note {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      .role-block {
+        grid-template-columns: 1fr;
+      }
+
+      .role-accent-line {
+        display: none;
+      }
+
+      .role-content {
+        padding: 2.5rem 0;
+      }
+
+      .role-title-row {
+        flex-direction: column;
+        gap: 0.4rem;
+        align-items: flex-start;
+      }
+
+      .role-result {
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Andrés Cardigni</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Work</a></li>
+        <li><a href="experience.html" class="active">Experience</a></li>
+        <li><a href="thinking.html">Thinking</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:1.25rem;">
+        <div class="lang-switch">
+          <a href="experience.html" class="lang-active">EN</a>
+          <span class="lang-switch-divider">/</span>
+          <a href="experience-es.html">ES</a>
+        </div>
+        <a href="mailto:andres.cardigni@gmail.com" class="nav-cta">Get in touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header-label">Professional growth</div>
+      <h1 class="page-header-title">From Physical Product to Digital Interface: A 10-Year Journey</h1>
+      <p class="page-header-desc">My career didn't follow a straight line. Each discipline overlapped and fed the next — industrial design gave me process and constraints, graphic design gave me systems and identity, UX/UI gave me the digital language, and product brought it all together.</p>
+    </div>
+  </header>
+
+  <!-- ROLES -->
+  <main>
+    <div class="container">
+      <div class="roles-list">
+
+        <!-- ── GOAT ── -->
+        <article id="goat" class="role-block">
+          <div class="role-content">
+            <div class="role-title-row">
+              <div class="role-title-group">
+                <h2 class="role-title">Lead Product &amp; UX/UI Designer at GOAT</h2>
+                <div class="role-company">Fintech · Payment Service Provider (PSP)</div>
+              </div>
+              <span class="role-period">Mar 2023 — Present</span>
+            </div>
+
+            <p class="role-summary">GOAT is the PSP behind the Rebit ecosystem — the financial infrastructure powering payments, collections and business services. In this role I shifted from UX/UI execution to product ownership, working directly with the CEO to define strategy and with the dev lead to ship it.</p>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Responsibilities</div>
+              <ul class="role-bullet-list">
+                <li><strong>Product Strategy &amp; Integration:</strong> Worked directly with the CEO to define which services to build and which providers to integrate. Attended technical meetings with Prisma, TAPI, and RedLink, translated requirements into flows, and handed off to development with full documentation. Prisma replaced RedLink mid-process based on integration feasibility — a decision made jointly with the CEO and dev lead.</li>
+                <li><strong>Team Leadership:</strong> Led a UX/UI team of 4 designers while coordinating parallel workstreams with the frontend lead and 3–4 developers. Design was never the bottleneck — that was the goal and the standard.</li>
+                <li><strong>Design System Ownership:</strong> Maintained and evolved the design system across B2B (Merchant) and B2C (Wallet) platforms. Every component was documented and linked to development as a binding reference, not a suggestion.</li>
+              </ul>
+            </div>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Projects &amp; Achievements</div>
+              <ul class="role-bullet-list">
+                <li><strong>Rebit Comercios:</strong> Led the end-to-end design of the QR and card payment solution for merchants — from zero to launch. Now the primary revenue driver of the platform, it moved the company from investment-dependent to operationally sustainable.</li>
+                <li><strong>Rebit App MVP:</strong> Directed the redesign of the B2C mobile wallet, built for scale and prepared for public release. Designed for all future integrations, not just what existed at the time.</li>
+                <li><strong>Provider Integrations:</strong> Fully designed and documented the TAPI integration flow before leaving — ready for development to implement. Prisma was activated for payments and collections during my tenure.</li>
+              </ul>
+            </div>
+
+            <div class="role-result">
+              <span class="role-result-label">Result</span>
+              <p class="role-result-text">Under my leadership, the platform grew from 10 to 20 B2B clients and monthly processing volume reached over 1.5B ARS.</p>
+            </div>
+          </div>
+          <div class="role-accent-line"></div>
+        </article>
+
+        <!-- ── Rebit ── -->
+        <article id="rebit" class="role-block">
+          <div class="role-content">
+            <div class="role-title-row">
+              <div class="role-title-group">
+                <h2 class="role-title">UX/UI Lead at Rebit</h2>
+                <div class="role-company">Fintech · Digital Wallet</div>
+              </div>
+              <span class="role-period">Jan 2022 — Feb 2023</span>
+            </div>
+
+            <p class="role-summary">Joined when the product was called Brik Federation. Led the full rebuild: new name, new brand, new design system, new workflows. The problem wasn't a bad design — it was no design process at all.</p>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Responsibilities</div>
+              <ul class="role-bullet-list">
+                <li><strong>End-to-End Rebuild:</strong> Led the renaming, rebranding, and full redesign of the product. Built the design system from scratch and applied it to the web wallet first, then the mobile app. Every decision was documented and linked to development as a binding reference.</li>
+                <li><strong>Cross-Platform Design:</strong> Designed simultaneously for desktop (B2B admin panels) and mobile (B2C wallet), including onboarding, P2P transactions, CVU management, and crypto operations.</li>
+                <li><strong>Process &amp; Handoff:</strong> Moved the team from zero documentation to pixel-perfect handoff with development. Design stopped being a bottleneck and became a driver.</li>
+              </ul>
+            </div>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Projects &amp; Achievements</div>
+              <ul class="role-bullet-list">
+                <li><strong>Rebit App (B2C):</strong> Designed the complete mobile wallet experience — onboarding, P2P flows, and transaction management — with a new design system built for scale.</li>
+                <li><strong>Rebit Wallet (B2B):</strong> Led UX and UI design for the corporate wallet — a high-complexity platform for managing company capital, large-scale transactions, and user permissions.</li>
+                <li><strong>Foundational Design System:</strong> Built the UI Kit that unified B2B and B2C platforms under a single visual language, enabling consistent and fast development handoff across the ecosystem.</li>
+              </ul>
+            </div>
+
+            <div class="role-result">
+              <span class="role-result-label">Result</span>
+              <p class="role-result-text">The team moved to pixel-perfect implementation with development. We shipped a new app built for scale and a design system that supported all future integrations.</p>
+            </div>
+          </div>
+          <div class="role-accent-line"></div>
+        </article>
+
+        <!-- ── Corporación Cápsula ── -->
+        <article id="capsula" class="role-block">
+          <div class="role-content">
+            <div class="role-title-row">
+              <div class="role-title-group">
+                <h2 class="role-title">Lead Designer at Corporación Cápsula</h2>
+                <div class="role-company">Tech-Financial Holding</div>
+              </div>
+              <span class="role-period">Feb 2022 — Dec 2022</span>
+            </div>
+
+            <p class="role-summary">Corporación Cápsula was a holding built around a vertically integrated model: renewable energy → Bitcoin mining → fintech. Everything had to be designed from zero under investor pressure and tight deadlines. The company later pivoted and became GOAT, narrowing its focus exclusively to the financial layer.</p>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Responsibilities</div>
+              <ul class="role-bullet-list">
+                <li><strong>Full Design Leadership:</strong> Led a team of 2 graphic designers and 1 UX/UI designer. My scope covered the full design surface of the company: brand identity, web, pitch decks, event presence, and merchandise.</li>
+                <li><strong>Physical Product Design:</strong> Redesigned mining hardware cases arriving disassembled from China, adapting them for liquid cooling submersion. One of the few projects where my industrial design background became directly operational — understanding cooling specs before touching the form.</li>
+                <li><strong>Investor Communication:</strong> Produced full 3D renders of the project vision to communicate a complex multi-stage business (energy → mining → fintech) to non-technical investors in a single image. Also led all pitch deck design and event materials.</li>
+              </ul>
+            </div>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Projects &amp; Achievements</div>
+              <ul class="role-bullet-list">
+                <li><strong>Brand &amp; Identity System:</strong> Built the full visual identity from zero — logo, color system, typography, brand guidelines — under tight deadlines and investor pressure.</li>
+                <li><strong>Virtuality San Juan 2022:</strong> Designed the full event presence including stand, branded materials, and merchandise. The company's first public appearance with a complete and coherent identity.</li>
+                <li><strong>Hardware Redesign:</strong> Redesigned the mining equipment cases for liquid cooling submersion — a direct application of industrial design principles to a tech product.</li>
+              </ul>
+            </div>
+
+            <div class="role-result">
+              <span class="role-result-label">Result</span>
+              <p class="role-result-text">The company presented at Virtuality San Juan 2022 with a complete brand and a working MVP vision. Shortly after, it pivoted and became GOAT.</p>
+            </div>
+          </div>
+          <div class="role-accent-line"></div>
+        </article>
+
+        <!-- ── Graphic Designer ── -->
+        <article id="graphic" class="role-block">
+          <div class="role-content">
+            <div class="role-title-row">
+              <div class="role-title-group">
+                <h2 class="role-title">Graphic Designer</h2>
+                <div class="role-company">Freelance · Branding &amp; Visual Systems</div>
+              </div>
+              <span class="role-period">Jan 2020 — Dec 2021</span>
+            </div>
+
+            <p class="role-summary">Started with brand identity work for external clients. As I moved into product roles, this evolved into directing the visual identity of the products I was leading — working with and guiding design teams rather than executing alone.</p>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Responsibilities</div>
+              <ul class="role-bullet-list">
+                <li><strong>Brand Identity &amp; Visual Systems:</strong> Created complete brand identities for startups and businesses — logo, color system, typography, brand guidelines. Managed projects from briefing to final delivery.</li>
+                <li><strong>Team Direction:</strong> As I moved into senior roles, shifted from executing to directing — defining the visual direction and guiding designers to execute it consistently across touchpoints.</li>
+              </ul>
+            </div>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Projects &amp; Achievements</div>
+              <ul class="role-bullet-list">
+                <li><strong>Rebit &amp; GOAT Brand Systems:</strong> Created the foundational visual identities for both companies, which later evolved into full design systems and UI Kits for their fintech products.</li>
+                <li><strong>External Clients:</strong> Developed brand identities for CACHEDA (industrial services), TODO ELÉCTRICO (retail), MARGARET (hospitality), and FANEC (construction), among others.</li>
+              </ul>
+            </div>
+
+            <div class="role-result">
+              <span class="role-result-label">Result</span>
+              <p class="role-result-text">Built a systematic approach to visual identity that transferred directly into how I build design systems for digital products.</p>
+            </div>
+          </div>
+          <div class="role-accent-line"></div>
+        </article>
+
+        <!-- ── Industrial Designer ── -->
+        <article id="industrial" class="role-block">
+          <div class="role-content">
+            <div class="role-title-row">
+              <div class="role-title-group">
+                <h2 class="role-title">Industrial Designer</h2>
+                <div class="role-company">Freelance · Product Development &amp; Manufacturing</div>
+              </div>
+              <span class="role-period">Sep 2015 — Jan 2020</span>
+            </div>
+
+            <p class="role-summary">Designed and produced furniture, plastic parts, and commercial spaces. Managed the full product lifecycle from parametric modeling to client delivery. This is where I learned that design without constraints isn't design.</p>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Responsibilities</div>
+              <ul class="role-bullet-list">
+                <li><strong>Design for Manufacturing (DFM):</strong> Created technical drawings and material specifications to ensure production feasibility and cost optimization. Delivered precise specs for plastic injection, metal fabrication, and woodworking.</li>
+                <li><strong>Modular Systems:</strong> Developed product lines and furniture based on modular systems — a practice that directly informs how I approach component libraries and design systems today.</li>
+                <li><strong>Parametric Design:</strong> Used Grasshopper for complex geometry modeling — establishing a rule-based, data-driven design mindset that I now apply to design tokens and component logic.</li>
+              </ul>
+            </div>
+
+            <div class="role-section">
+              <div class="role-section-label">Key Projects &amp; Achievements</div>
+              <ul class="role-bullet-list">
+                <li><strong>Retail &amp; Furniture Systems:</strong> Designed modular furniture and exhibit displays for commercial clients, optimizing space and visual communication at the physical point of sale.</li>
+                <li><strong>Infrastructure Products:</strong> Designed solar-powered autonomous totems, parking systems, and mass-market plastic products — managing the full cycle from concept to production.</li>
+              </ul>
+            </div>
+
+            <div class="role-result">
+              <span class="role-result-label">Result</span>
+              <p class="role-result-text">Built the systemic, constraint-first thinking that underpins everything I do in digital product design today.</p>
+            </div>
+          </div>
+          <div class="role-accent-line"></div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">Andrés Cardigni</span>
+        <span class="footer-note">Lead Product &amp; UX/UI Designer · 2025</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
