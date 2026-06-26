@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Andrés Cardigni — Lead Product & UX/UI Designer with 5 years in fintech. Background in industrial and graphic design. Based in Argentina, available for remote work.">
   <title>Andrés Cardigni — Lead Product & UX/UI Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -697,6 +698,8 @@
     /* ══════════════════════════════
        RESPONSIVE
     ══════════════════════════════ */
+    .project-card.card-capsula { grid-column: span 2; }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
 
@@ -712,7 +715,8 @@
         grid-template-columns: 1fr;
       }
 
-      .project-card.featured {
+      .project-card.card-capsula { grid-column: span 1; }
+    .project-card.featured {
         grid-column: span 1;
         flex-direction: column;
       }
@@ -803,12 +807,12 @@
       <div class="projects-grid">
 
         <!-- Featured: GOAT -->
-        <a class="project-card featured" data-project="goat" role="button" tabindex="0">
+        <div class="project-card featured" data-project="goat" role="button" tabindex="0">
           <div class="project-card-content">
             <span class="project-tag">Product · UX/UI · Integrations · Design System</span>
             <h3 class="project-title">GOAT — Leading Product Expansion in a Fintech Ecosystem</h3>
             <p class="project-desc">Shifted from UX/UI execution to product ownership — defining which services to build, coordinating integrations with external providers, and leading four designers across the full Rebit ecosystem.</p>
-            <div class="project-image-placeholder"><span>Image coming soon</span></div>
+            <div class="project-image-placeholder"><img src="Images/GOAT01.png" alt="GOAT" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
           </div>
           <div class="project-card-right">
             <div class="project-result">
@@ -816,10 +820,10 @@
             </div>
             <span class="project-arrow">↗</span>
           </div>
-        </a>
+        </div>
 
         <!-- Rebit -->
-        <a class="project-card" data-project="rebit" role="button" tabindex="0">
+        <div class="project-card" data-project="rebit" role="button" tabindex="0">
           <div class="project-card-content">
             <span class="project-tag">UX/UI · Branding · Design System · Product</span>
             <h3 class="project-title">Rebit — Rebuilding a Fintech from the Ground Up</h3>
@@ -829,10 +833,10 @@
           <div class="project-card-footer">
             <span class="project-arrow">↗</span>
           </div>
-        </a>
+        </div>
 
         <!-- Rebit Comercios -->
-        <a class="project-card" data-project="rebit-comercios" role="button" tabindex="0">
+        <div class="project-card" data-project="rebit-comercios" role="button" tabindex="0">
           <div class="project-card-content">
             <span class="project-tag">Product · UX/UI · Flows · B2B</span>
             <h3 class="project-title">Rebit Comercios — Designing the Revenue Engine of a Fintech</h3>
@@ -842,20 +846,20 @@
           <div class="project-card-footer">
             <span class="project-arrow">↗</span>
           </div>
-        </a>
+        </div>
 
         <!-- Corporación Cápsula -->
-        <a class="project-card" data-project="capsula" role="button" tabindex="0" style="grid-column: span 2;">
+        <div class="project-card card-capsula" data-project="capsula" role="button" tabindex="0">
           <div class="project-card-content">
             <span class="project-tag">Brand · UX/UI · Industrial Design · Product Strategy</span>
             <h3 class="project-title">Corporación Cápsula — Designing a Tech-Financial Holding from Scratch</h3>
             <p class="project-desc">Led a team of three designers across brand, web, pitch decks, and physical hardware redesign — building the full identity of a holding under investor pressure and tight deadlines. This is where industrial design and digital work converged for the first time.</p>
-            <div class="project-image-placeholder"><img src="https://img.youtube.com/vi/rn3oahV9KE4/maxresdefault.jpg" alt="Corporación Cápsula" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+            <div class="project-image-placeholder"><img src="Images/CorporaciónCapsulaEnergy+Mining.png" alt="Corporación Cápsula" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
           </div>
           <div class="project-card-footer">
             <span class="project-arrow">↗</span>
           </div>
-        </a>
+        </div>
 
       </div>
     </div>
@@ -1008,11 +1012,15 @@
         <div class="modal-carousel">
           <div class="carousel-track-wrap">
             <div class="carousel-track" id="carousel-track"></div>
-            <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Previous">←</button>
-            <button class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Next">→</button>
             <div class="carousel-dots" id="carousel-dots"></div>
           </div>
-          <p class="carousel-caption" id="carousel-caption"></p>
+          <div class="carousel-bottom">
+            <p class="carousel-caption" id="carousel-caption"></p>
+            <div class="carousel-nav">
+              <button class="carousel-arrow carousel-arrow-prev" id="carousel-prev" aria-label="Previous"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button class="carousel-arrow carousel-arrow-next" id="carousel-next" aria-label="Next"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
         </div>
 
         <!-- Right: info -->
@@ -1045,12 +1053,16 @@
       background: rgba(0,0,0,0.75);
       z-index: 1000;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding: 1.5rem;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
+      overflow-y: auto;
+    }
+    @media (min-height: 700px) {
+      .modal-overlay { align-items: center; }
     }
     .modal-overlay.is-open {
       opacity: 1;
@@ -1065,7 +1077,7 @@
     .modal-container {
       background: #FFFFFF;
       border-radius: 0;
-      padding: 32px;
+      padding: 48px;
       max-width: 960px;
       width: 100%;
       overflow: visible;
@@ -1124,32 +1136,42 @@
       font-size: 12px;
       line-height: 1.6;
       color: var(--text-soft);
-      margin-top: 0.5rem;
     }
     .carousel-caption a {
       color: inherit;
       text-decoration: none;
     }
 
-    /* Arrows inside image */
-    .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      padding: 0.25rem 0.5rem;
-      color: rgba(255,255,255,0.55);
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: color 0.15s;
-      z-index: 2;
-      line-height: 1;
+    /* Arrows below image */
+    .carousel-bottom {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.5rem;
     }
-    .carousel-arrow:hover { color: #fff; }
+    .carousel-nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .carousel-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: 1px solid var(--text-soft);
+      background: none;
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+    }
+    .carousel-arrow:hover { background: var(--text-soft); color: var(--bg); }
     .carousel-arrow:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
-    .carousel-arrow-prev { left: 0.5rem; }
-    .carousel-arrow-next { right: 0.5rem; }
 
     /* Dots inside image */
     .carousel-dots {
@@ -1215,6 +1237,19 @@
       margin-left: 1.2rem;
     }
 
+    @media (max-width: 780px) {
+      .modal-body {
+        grid-template-columns: 1fr;
+      }
+      .modal-carousel {
+        order: 1;
+      }
+      .modal-info {
+        order: 2;
+        padding-right: 0;
+      }
+    }
+
     /* ── Mobile ── */
     @media (max-width: 640px) {
       .modal-container { padding: 1.25rem; }
@@ -1238,9 +1273,8 @@
           'Every integration was designed as a flow first, handed off with full documentation — development never had to interpret, only implement.',
         ],
         slides: [
-          { src: 'images/goat-01.png', caption: 'Dashboard overview — designed to give B2B clients a single control panel for all financial operations.' },
-          { src: 'images/goat-02.png', caption: 'Provider integration flow — mapping the handoff points between internal design and external API dependencies.' },
-          { src: 'images/goat-03.png', caption: 'Design system tokens — establishing the shared language between four designers working in parallel.' },
+          { src: 'Images/GOAT01.png' },
+          { src: 'Images/GOAT02.png' },
         ]
       },
       rebit: {
@@ -1252,9 +1286,9 @@
           'Focus on democratizing Bitcoin access in Argentina, with an interface built to reduce friction for users who had never used crypto before.',
         ],
         slides: [
-          { src: 'images/Rebit.png', caption: 'Brand reveal — the rename from Brik Federation to Rebit, with a new visual identity built from scratch.' },
-          { src: 'images/Rebit02.png', caption: 'Design system — component library and token structure that enabled consistent, scalable handoffs.' },
-          { src: 'images/rebit-03.png', caption: 'Onboarding flow — one of the first flows fully documented for development, establishing the new standard.' },
+          { src: 'Images/Rebit.png' },
+          { src: 'Images/Rebit02.png' },
+          { src: 'Images/Rebit03.png' },
         ]
       },
       'rebit-comercios': {
@@ -1266,9 +1300,8 @@
           'Multiple CBUs under a single account allow businesses to separate branches, transact between them internally, and keep a personal account alongside — all within one ecosystem.',
         ],
         slides: [
-          { src: 'images/Rebit Comercios.png', caption: 'Merchant dashboard — designed for low-tech users operating physical stores with limited time.' },
-          { src: 'images/rebit-comercios-02.png', caption: 'QR generation flow — simplified to three steps to reduce friction at the point of sale.' },
-          { src: 'images/rebit-comercios-03.png', caption: 'Transaction history — giving merchants visibility into daily revenue without financial complexity.' },
+          { src: 'Images/Rebit Comercios.png' },
+          { src: 'Images/Rebit Comercios02.png' },
         ]
       },
       capsula: {
@@ -1280,9 +1313,10 @@
           'Full design scope delivered: brand identity, web, pitch decks, event presence, and physical hardware redesign — from visual system to manufacturing specs.',
         ],
         slides: [
-          { src: 'https://img.youtube.com/vi/rn3oahV9KE4/maxresdefault.jpg', caption: 'Virtuality San Juan 2022 — product video presented at the company\'s public debut. Watch on YouTube ↗', link: 'https://www.youtube.com/watch?v=rn3oahV9KE4' },
-          { src: 'images/capsula-02.png', caption: 'Brand identity — logotype, color system, and typographic language built under tight deadlines.' },
-          { src: 'images/capsula-03.png', caption: 'Hardware redesign — industrial design direction for the physical payment terminal.' },
+          { src: 'Images/CorporaciónCapsulaEnergy.png' },
+          { src: 'Images/CorporaciónCapsulaMining.png' },
+          { src: 'Images/CorporaciónCapsulaEnergy+Mining.png' },
+          { src: 'Images/CorporaciónCapsulaEnergy+Mining2.png' },
         ]
       }
     };
