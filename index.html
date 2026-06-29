@@ -828,7 +828,7 @@
             <span class="project-tag">UX/UI · Branding · Design System · Product</span>
             <h3 class="project-title">Rebit — Rebuilding a Fintech from the Ground Up</h3>
             <p class="project-desc">Led the full rebuild of a fintech product — new name, new brand, new design system. Moved the team from zero documentation to pixel-perfect handoff with development.</p>
-            <div class="project-image-placeholder"><img src="images/Rebit.png" alt="Rebit" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+            <div class="project-image-placeholder"><img src="Images/rebit01.png" alt="Rebit" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
           </div>
           <div class="project-card-footer">
             <span class="project-arrow">↗</span>
@@ -841,7 +841,7 @@
             <span class="project-tag">Product · UX/UI · Flows · B2B</span>
             <h3 class="project-title">Rebit Comercios — Designing the Revenue Engine of a Fintech</h3>
             <p class="project-desc">Designed end-to-end from zero — flows, wireframes, high-fidelity handoff. Worked directly with B2B clients to adapt the product to how their businesses actually operate.</p>
-            <div class="project-image-placeholder"><img src="images/Rebit Comercios.png" alt="Rebit Comercios" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+            <div class="project-image-placeholder"><img src="Images/Merchant01.png" alt="Rebit Comercios" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
           </div>
           <div class="project-card-footer">
             <span class="project-arrow">↗</span>
@@ -854,7 +854,7 @@
             <span class="project-tag">Brand · UX/UI · Industrial Design · Product Strategy</span>
             <h3 class="project-title">Corporación Cápsula — Designing a Tech-Financial Holding from Scratch</h3>
             <p class="project-desc">Led a team of three designers across brand, web, pitch decks, and physical hardware redesign — building the full identity of a holding under investor pressure and tight deadlines. This is where industrial design and digital work converged for the first time.</p>
-            <div class="project-image-placeholder"><img src="Images/CorporaciónCapsulaEnergy+Mining.png" alt="Corporación Cápsula" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+            <div class="project-image-placeholder"><img src="Images/CC01.png" alt="Corporación Cápsula" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
           </div>
           <div class="project-card-footer">
             <span class="project-arrow">↗</span>
@@ -1109,24 +1109,18 @@
       position: relative;
       overflow: hidden;
       border-radius: 2px;
-      height: 448px;
     }
     .carousel-track {
       display: flex;
-      height: 100%;
       transition: transform 0.35s ease;
     }
     .carousel-slide {
       min-width: 100%;
-      height: 100%;
-      position: relative;
     }
     .carousel-slide img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
-      background: var(--border);
     }
 
     /* Caption below image */
@@ -1286,9 +1280,10 @@
           'Focus on democratizing Bitcoin access in Argentina, with an interface built to reduce friction for users who had never used crypto before.',
         ],
         slides: [
-          { src: 'Images/Rebit.png' },
-          { src: 'Images/Rebit02.png' },
-          { src: 'Images/Rebit03.png' },
+          { src: 'Images/rebit01.png' },
+          { src: 'Images/rebit02.png' },
+          { src: 'Images/rebit03.png' },
+          { src: 'Images/rebit04.png' },
         ]
       },
       'rebit-comercios': {
@@ -1300,8 +1295,8 @@
           'Multiple CBUs under a single account allow businesses to separate branches, transact between them internally, and keep a personal account alongside — all within one ecosystem.',
         ],
         slides: [
-          { src: 'Images/Rebit Comercios.png' },
-          { src: 'Images/Rebit Comercios02.png' },
+          { src: 'Images/Merchant01.png' },
+          { src: 'Images/Merchant02.png' },
         ]
       },
       capsula: {
@@ -1313,10 +1308,10 @@
           'Full design scope delivered: brand identity, web, pitch decks, event presence, and physical hardware redesign — from visual system to manufacturing specs.',
         ],
         slides: [
-          { src: 'Images/CorporaciónCapsulaEnergy.png' },
-          { src: 'Images/CorporaciónCapsulaMining.png' },
-          { src: 'Images/CorporaciónCapsulaEnergy+Mining.png' },
-          { src: 'Images/CorporaciónCapsulaEnergy+Mining2.png' },
+          { src: 'Images/CC01.png' },
+          { src: 'Images/CC02.png' },
+          { src: 'Images/CC03.png' },
+          { src: 'Images/CC04.png' },
         ]
       }
     };
@@ -1394,7 +1389,10 @@
           dotsWrap.appendChild(dot);
         });
 
+        track.style.transition = 'none';
         updateCarousel();
+        track.getBoundingClientRect();
+        track.style.transition = '';
       }
 
       function goTo(index) {
